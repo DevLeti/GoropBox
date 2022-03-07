@@ -3,21 +3,24 @@ package db
 import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
+	"phobyjun/model"
 )
 
 const dsn = "host=localhost user=phobyjun password=password dbname=goropbox port=5432 TimeZone=Asia/Seoul"
 
-func Init() *gorm.DB {
-	session := getSession()
+var db *gorm.DB
 
-	return session
-}
-
-func getSession() *gorm.DB {
+func Init() {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal(err)
+		panic("DB Connection Error")
 	}
+	db.AutoMigrate(
+		&model.User{},
+		&model.File{},
+	)
+}
+
+func DBManager() *gorm.DB {
 	return db
 }
