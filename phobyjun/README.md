@@ -6,7 +6,7 @@
 
 # 기술 스택
 - `echo`
-- `entgo` or `gorm`
+- `gorm`
 - `go-oauth2`
 - `postgresql`
 
