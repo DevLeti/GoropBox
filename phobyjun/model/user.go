@@ -5,4 +5,5 @@ type User struct {
 	Username string `json:"username"`
 	Password string `json:"-"`
 	Email    string `json:"email"`
+	Files    []File
 }
