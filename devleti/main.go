@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"github.com/devleti/goropbox/devleti/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -16,5 +16,11 @@ func main() {
 		panic("Failed to connect DB")
 	}
 
-	fmt.Println(db)
+	err = db.AutoMigrate(
+		&model.User{},
+		&model.File{},
+	)
+	if err != nil {
+		panic("Failed to migrate")
+	}
 }
